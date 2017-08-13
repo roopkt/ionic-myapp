@@ -8,14 +8,26 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
   shouldReorder = false;
-  people$;
+  people = [];
   constructor(
     public navCtrl: NavController,
-    private peopleProvider: People
+    private service: People
   ) {
-    this.people$ = peopleProvider.getPeople();
+    service.getPeople().subscribe(
+      data => this.people = data
+    );
   }
+
   toggleReorder() {
     this.shouldReorder = !this.shouldReorder;
+  }
+
+  doRefresh(e) {
+    this.service.getPeople()
+      .subscribe(
+      data => this.people.unshift(...data),
+      err => console.log(err),
+      () => e.complete()
+      );
   }
 }
