@@ -8,12 +8,12 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
   shouldReorder = false;
-  people;
+  people$;
   constructor(
     public navCtrl: NavController,
     private peopleProvider: People
   ) {
-    this.people = peopleProvider.getPeople();
+    this.people$ = peopleProvider.getPeople();
   }
   toggleReorder() {
     this.shouldReorder = !this.shouldReorder;
