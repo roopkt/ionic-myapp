@@ -6,7 +6,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  shouldReorder=false;
   people = [
     {
       gender: "female",
@@ -124,5 +124,7 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
 
   }
-
+  toggleReorder() {
+    this.shouldReorder = !this.shouldReorder;
+  }
 }
